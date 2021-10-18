@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 class ManagerTest { // Подготовка начального состояния
-    public MovieManager manager = new MovieManager();
+//    public MovieManager manager = new MovieManager();
 
     private MoviePoster first = new MoviePoster(1, 151, "Бладшот");
     private MoviePoster second = new MoviePoster(2, 152, "Вперёд");
@@ -22,21 +22,20 @@ class ManagerTest { // Подготовка начального состоян�
     private MoviePoster tenth = new MoviePoster(10, 160, "Неудержимые");
     private MoviePoster eleventh = new MoviePoster(11, 161, "Отступники");
 
-    @BeforeEach
-
-    public void setUp() {
-        manager.save(first);
-        manager.save(second);
-        manager.save(third);
-        manager.save(fourth);
-        manager.save(fifth);
-        manager.save(sixth);
-        manager.save(seventh);
-        manager.save(eighth);
-        manager.save(ninth);
-        manager.save(tenth);
-        manager.save(eleventh);
-    }
+//    @BeforeEach
+//    public void setUp() {
+//        manager.save(first);
+//        manager.save(second);
+//        manager.save(third);
+//        manager.save(fourth);
+//        manager.save(fifth);
+//        manager.save(sixth);
+//        manager.save(seventh);
+//        manager.save(eighth);
+//        manager.save(ninth);
+//        manager.save(tenth);
+//        manager.save(eleventh);
+//    }
 
     @Test
     void shouldSaveMovies() {
@@ -50,8 +49,18 @@ class ManagerTest { // Подготовка начального состоян�
     @Test
     public void getLast10Movies() {
         MovieManager manager = new MovieManager();
+        manager.save(first);
+        manager.save(second);
+        manager.save(third);
+        manager.save(fourth);
+        manager.save(fifth);
+        manager.save(sixth);
+        manager.save(seventh);
+        manager.save(eighth);
+        manager.save(ninth);
+        manager.save(tenth);
 
-        MoviePoster[] expected = new MoviePoster[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second};
+        MoviePoster[] expected = new MoviePoster[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
         MoviePoster[] actual = manager.getAll();
 
         assertArrayEquals(expected, actual);
