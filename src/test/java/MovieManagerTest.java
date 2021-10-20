@@ -115,7 +115,7 @@ class ManagerTest { // Подготовка начального состоян�
         manager.save(eleventh);
 
         MoviePoster[] expected = new MoviePoster[]{eleventh, tenth, eighth, ninth, seventh, sixth, fifth, fourth};
-        MoviePoster[] actual = manager.getAll();
+        MoviePoster[] actual = manager.showTheLastAddedMovies();
 
         assertArrayEquals(expected, actual);
     }
