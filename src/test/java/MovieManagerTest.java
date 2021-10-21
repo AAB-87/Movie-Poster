@@ -1,14 +1,10 @@
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.MoviePoster;
 import ru.netology.manager.MovieManager;
-import org.junit.jupiter.api.BeforeEach;
-
-
 import static org.junit.jupiter.api.Assertions.*;
 
 
-class ManagerTest { // Подготовка начального состояния
-//    public MovieManager manager = new MovieManager();
+class ManagerTest {
 
     private MoviePoster first = new MoviePoster(1, 151, "Бладшот");
     private MoviePoster second = new MoviePoster(2, 152, "Вперёд");
@@ -22,32 +18,19 @@ class ManagerTest { // Подготовка начального состоян�
     private MoviePoster tenth = new MoviePoster(10, 160, "Неудержимые");
     private MoviePoster eleventh = new MoviePoster(11, 161, "Отступники");
 
-//    @BeforeEach
-//    public void setUp() {
-//        manager.save(first);
-//        manager.save(second);
-//        manager.save(third);
-//        manager.save(fourth);
-//        manager.save(fifth);
-//        manager.save(sixth);
-//        manager.save(seventh);
-//        manager.save(eighth);
-//        manager.save(ninth);
-//        manager.save(tenth);
-//        manager.save(eleventh);
-//    }
-
     @Test
-    void shouldSaveMovies() {
+    void shouldSaveMovies() { // добавление фильма в ленту
         MovieManager manager = new MovieManager();
+
         manager.save(first);
+
         MoviePoster[] expected = new MoviePoster[]{first};
         MoviePoster[] actual = manager.findAll();
         assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void getLast10Movies() {
+    public void getLast10Movies() { // выдаёт 10 последних добавленных фильмов в обратном порядке
         MovieManager manager = new MovieManager();
 
         manager.save(second);
@@ -68,7 +51,7 @@ class ManagerTest { // Подготовка начального состоян�
     }
 
     @Test
-    public void getLast5Movies() {
+    public void getLast5Movies() { // выдаёт 5 последних добавленных фильмов в обратном порядке
         MovieManager manager = new MovieManager();
 
         manager.save(seventh);
@@ -84,7 +67,7 @@ class ManagerTest { // Подготовка начального состоян�
     }
 
     @Test
-    public void ifLessThan10Movies() {
+    public void ifLessThan10Movies() { // если фильмов меньше 10и, то выдаёт столько сколько есть
         MovieManager manager = new MovieManager();
 
         manager.save(first);
@@ -99,8 +82,8 @@ class ManagerTest { // Подготовка начального состоян�
     }
 
     @Test
-    public void getLast8Movies() { // выдаёт меньше (8) чем есть (11)
-        MovieManager manager = new MovieManager(8);
+    public void getLast9Movies() { // при создании менеджера задаётся другое число для вывод (9)
+        MovieManager manager = new MovieManager(9);
 
         manager.save(first);
         manager.save(second);
@@ -114,8 +97,40 @@ class ManagerTest { // Подготовка начального состоян�
         manager.save(tenth);
         manager.save(eleventh);
 
-        MoviePoster[] expected = new MoviePoster[]{eleventh, tenth, eighth, ninth, seventh, sixth, fifth, fourth};
+        MoviePoster[] expected = new MoviePoster[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third};
         MoviePoster[] actual = manager.showTheLastAddedMovies();
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void getLast11Movies() { // при создании менеджера задаётся другое число для вывод (11)
+        MovieManager manager = new MovieManager(11);
+
+        manager.save(first);
+        manager.save(second);
+        manager.save(third);
+        manager.save(fourth);
+        manager.save(fifth);
+        manager.save(sixth);
+        manager.save(seventh);
+        manager.save(eighth);
+        manager.save(ninth);
+        manager.save(tenth);
+        manager.save(eleventh);
+
+        MoviePoster[] expected = new MoviePoster[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
+        MoviePoster[] actual = manager.showTheLastAddedMovies();
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void getEmptyPoster() { // лимит 10, выводим 0
+        MovieManager manager = new MovieManager();
+
+        MoviePoster[] expected = new MoviePoster[0];
+        MoviePoster[] actual = manager.findAll();
 
         assertArrayEquals(expected, actual);
     }

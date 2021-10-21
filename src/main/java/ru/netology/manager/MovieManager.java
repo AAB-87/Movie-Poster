@@ -35,12 +35,7 @@ public class MovieManager {
     }
 
     public MoviePoster[] findAll() { // возвращает массив весь
-//        MoviePoster[] result = new MoviePoster[movies.length]; // создаем новый массив как мувис
         return movies;
-//        for (int i = 0; i < result.length; i++) { // проходимся циклом, где i это новая ячейка. Для каждого i вычисляется ячейка старого массива
-//            result[i] = movies[i];
-//        }
-//        return result; // отдаёт в качестве результата все фильмы
     }
 
 
