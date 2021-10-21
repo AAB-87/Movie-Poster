@@ -93,11 +93,9 @@ class ManagerTest {
         manager.save(sixth);
         manager.save(seventh);
         manager.save(eighth);
-        manager.save(ninth);
-        manager.save(tenth);
-        manager.save(eleventh);
 
-        MoviePoster[] expected = new MoviePoster[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third};
+
+        MoviePoster[] expected = new MoviePoster[]{eighth, seventh, sixth, fifth, fourth, third, second, first};
         MoviePoster[] actual = manager.showTheLastAddedMovies();
 
         assertArrayEquals(expected, actual);
