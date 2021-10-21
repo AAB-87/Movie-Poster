@@ -4,7 +4,7 @@ import ru.netology.manager.MovieManager;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-class ManagerTest {
+class MovieManagerTest {
 
     private MoviePoster first = new MoviePoster(1, 151, "Бладшот");
     private MoviePoster second = new MoviePoster(2, 152, "Вперёд");
@@ -51,16 +51,15 @@ class ManagerTest {
     }
 
     @Test
-    public void getLast5Movies() { // выдаёт 5 последних добавленных фильмов в обратном порядке
+    public void getLast4Movies() { // выдаёт 4 последних добавленных фильмов в обратном порядке
         MovieManager manager = new MovieManager();
 
         manager.save(seventh);
         manager.save(eighth);
         manager.save(ninth);
         manager.save(tenth);
-        manager.save(eleventh);
 
-        MoviePoster[] expected = new MoviePoster[]{eleventh, tenth, ninth, eighth, seventh};
+        MoviePoster[] expected = new MoviePoster[]{tenth, ninth, eighth, seventh};
         MoviePoster[] actual = manager.getAll();
 
         assertArrayEquals(expected, actual);
@@ -82,8 +81,8 @@ class ManagerTest {
     }
 
     @Test
-    public void getLast9Movies() { // при создании менеджера задаётся другое число для вывод (9)
-        MovieManager manager = new MovieManager(9);
+    public void getLast8Movies() { // при создании менеджера задаётся другое число для вывод (8)
+        MovieManager manager = new MovieManager(8);
 
         manager.save(first);
         manager.save(second);
@@ -132,6 +131,68 @@ class ManagerTest {
 
         assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void getLast7Movies() { // при создании менеджера задаётся другое число для вывод (10)
+        MovieManager manager = new MovieManager(10);
+
+        manager.save(first);
+        manager.save(second);
+        manager.save(third);
+        manager.save(fourth);
+        manager.save(fifth);
+        manager.save(sixth);
+        manager.save(seventh);
+
+        MoviePoster[] expected = new MoviePoster[]{seventh, sixth, fifth, fourth, third, second, first};
+        MoviePoster[] actual = manager.showTheLastAddedMovies();
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void get10Movies() { // 10 постеров выводится
+        MovieManager manager = new MovieManager(10);
+
+        manager.save(first);
+        manager.save(second);
+        manager.save(third);
+        manager.save(fourth);
+        manager.save(fifth);
+        manager.save(sixth);
+        manager.save(seventh);
+        manager.save(eighth);
+        manager.save(ninth);
+        manager.save(tenth);
+
+        MoviePoster[] expected = new MoviePoster[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
+        MoviePoster[] actual = manager.showTheLastAddedMovies();
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void getMore10Movies() { // 10 постеров выводится
+        MovieManager manager = new MovieManager(10);
+
+        manager.save(first);
+        manager.save(second);
+        manager.save(third);
+        manager.save(fourth);
+        manager.save(fifth);
+        manager.save(sixth);
+        manager.save(seventh);
+        manager.save(eighth);
+        manager.save(ninth);
+        manager.save(tenth);
+        manager.save(eleventh);
+
+        MoviePoster[] expected = new MoviePoster[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second};
+        MoviePoster[] actual = manager.showTheLastAddedMovies();
+
+        assertArrayEquals(expected, actual);
+    }
+
 }
 
 
